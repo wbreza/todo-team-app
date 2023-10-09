@@ -62,6 +62,12 @@ jobs:
         env:
           AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
 
+      - name: Select environment
+        run: azd env select ${{ vars.AZURE_ENV_NAME }}
+        env:
+          AZURE_LOCATION: ${{ vars.AZURE_LOCATION }}
+          AZURE_SUBSCRIPTION_ID: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+
       - name: Provision Infrastructure
         run: azd provision --no-prompt
         env:
@@ -69,7 +75,7 @@ jobs:
           AZURE_LOCATION: ${{ vars.AZURE_LOCATION }}
           AZURE_SUBSCRIPTION_ID: ${{ vars.AZURE_SUBSCRIPTION_ID }}
           AZURE_DEVCENTER_ENVIRONMENT_TYPE: Dev
-
+  
       - name: Deploy Application
         run: azd deploy --no-prompt
         env:
