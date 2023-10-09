@@ -28,15 +28,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Install azd
-        uses: Azure/setup-azd@v0.1.0
-        with:
-          version: https://azuresdkreleasepreview.blob.core.windows.net/azd/standalone/pr/2767
-
       - name: Install Nodejs
         uses: actions/setup-node@v3
         with:
           node-version: 18
+
+      - name: Install azd
+        run: |
+          Invoke-RestMethod 'https://azuresdkreleasepreview.blob.core.windows.net/azd/standalone/pr/2767/uninstall-azd.ps1' -OutFile uninstall-azd.ps1; ./uninstall-azd.ps1
+          Invoke-RestMethod 'https://azuresdkreleasepreview.blob.core.windows.net/azd/standalone/pr/2767/install-azd.ps1' -OutFile install-azd.ps1; ./install-azd.ps1 -BaseUrl 'https://azuresdkreleasepreview.blob.core.windows.net/azd/standalone/pr/2767' -Version '' -SkipVerify -Verbose
+        shell: pwsh
 
       - name: Log in with Azure (Federated Credentials)
         if: ${{ env.AZURE_CLIENT_ID != '' }}
