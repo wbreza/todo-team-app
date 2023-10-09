@@ -31,7 +31,7 @@ jobs:
       - name: Install azd
         uses: Azure/setup-azd@v0.1.0
         with:
-          version: pr/2767
+          version: https://azuresdkreleasepreview.blob.core.windows.net/azd/standalone/pr/2767
 
       - name: Install Nodejs
         uses: actions/setup-node@v3
