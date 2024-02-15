@@ -6,10 +6,10 @@ metadata:
 platform:
   type: devcenter
   config:
-    name: wabrez-devcenter
-    project: Project1
-    catalog: SampleCatalog
-    environmentDefinition: Todo
+    name: dc-wabrez-od3kzvk4mwe72
+    project: Contoso-Demo
+    catalog: Example
+    environmentDefinition: Container-App-with-Cosmos_AZD-template
 services:
   web:
     project: ./src/web
